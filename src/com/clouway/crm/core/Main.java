@@ -73,8 +73,6 @@ public class Main {
         String words1 = "aa cc aa ff gg hh ff";
         String words2 = "Ники Илиев Вълчев Вевов";
 
-        System.out.println(mostCommon.wordCount(words1));
-
         System.out.println(mostCommon.letterCount(words2));
 
         //endregion

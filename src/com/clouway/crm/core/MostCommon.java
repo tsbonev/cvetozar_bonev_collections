@@ -14,27 +14,17 @@ public class MostCommon {
      * @param words the string to sreach through
      * @return a string with the result
      */
-    public String wordCount(String words){
+    public Map<String, Integer> wordCount(String words){
 
-        Set<String> wordSet = Arrays.stream(words.split(" ")).collect(Collectors.toSet());
+        Map<String, Integer> wordCounter = new TreeMap<>();
 
-        StringBuilder builder = new StringBuilder();
-
-        int len = 0;
-
-        for (String word: wordSet
+        for (String word: words.split(" ")
              ) {
-            builder.append(word);
-            builder.append(": ");
-            long count = Stream.of(words.split(" ")).filter(c -> c.equals(word)).count();
-            builder.append(count);
-            if(len < wordSet.size() - 1){
-                builder.append(", ");
-            }
-            len++;
+            Integer freq = wordCounter.get(word);
+            wordCounter.put(word, (freq == null) ? 1 : freq + 1);
         }
 
-        return builder.toString();
+        return wordCounter;
     }
 
     /**
