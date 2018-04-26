@@ -33,26 +33,19 @@ public class MostCommon {
      * @param words the string to search through
      * @return the most common letter
      */
-    public String letterCount(String words){
+    public char letterCount(String words){
 
-        words.toLowerCase();
+        words = words.toLowerCase().replaceAll("\\s+", "");
 
-        Set<String> wordSet = Arrays.stream(words.split("")).filter(c -> c != " ").collect(Collectors.toSet());
+        Map<Character, Integer> letterCounter = new TreeMap<>();
 
-        String mostCommonLetter = "";
-
-        long largestYet = 0;
-
-        for (String letter: wordSet
-                ) {
-            long count = Stream.of(words.split("")).filter(c -> c.equals(letter)).count();
-            if(count > largestYet){
-                largestYet = count;
-                mostCommonLetter = letter;
-            }
+        for (char letter : words.toCharArray()
+             ) {
+            Integer freq = letterCounter.get(letter);
+            letterCounter.put(letter, (freq == null) ? 1 : freq + 1);
         }
 
-        return mostCommonLetter;
+        return ((TreeMap<Character, Integer>) letterCounter).firstKey().charValue();
 
     }
 
