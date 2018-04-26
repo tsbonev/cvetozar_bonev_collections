@@ -15,12 +15,12 @@ public class PageBean<T> {
     /**
      * Constructs a PageBean instance with a given list
      *
-     * @param constructList list to clone in the instance
+     * @param constructList list to copy into own list
      * @param pageSize the size of every page
      */
-    public PageBean(ArrayList<T> constructList, int pageSize){
+    public PageBean(List<T> constructList, int pageSize){
         this.pageSize = pageSize;
-        list = (List<T>)constructList.clone();
+        list = new ArrayList<>(constructList);
         pageNum = list.size() / pageSize;
         if(list.size() % pageSize != 0){
             pageNum++;
